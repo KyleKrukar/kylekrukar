@@ -1,0 +1,9 @@
+.env
+*.env
+.DS_Store
+node_modules/
+router.php
+deploy.sh
+deploy-dev.sh
+deploy-prod.sh
+pull-prod.sh
