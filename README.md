@@ -32,4 +32,3 @@ bash deploy-prod.sh
 ## Links
 
 - **Production:** https://kylekrukar.com
-- **Dev:** https://dev.kylekrukar.com

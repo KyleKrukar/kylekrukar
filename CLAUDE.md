@@ -5,7 +5,6 @@
 Personal portfolio site for **Kyle Krukar** — Founder & Maker based in Denver, CO. Currently at [By the Pixel](https://www.bythepixel.com). This is an actively evolving single-page site with a live Spotify integration and cinematic visual design.
 
 **Production:** https://kylekrukar.com
-**Dev/Staging:** https://dev.kylekrukar.com
 
 ## Architecture
 
@@ -37,27 +36,23 @@ Personal portfolio site for **Kyle Krukar** — Founder & Maker based in Denver,
 ## Infrastructure
 
 ### Hosting
-- **S3 Buckets:** `kylekrukar.com` (prod), `dev.kylekrukar.com` (dev)
-- **CloudFront Distributions:** `E3HKN5R3ZE48CN` (prod), `E3ATTH6XCY1J67` (dev)
+- AWS S3 + CloudFront (prod and dev buckets/distributions configured separately)
 - **Region:** us-east-2 (Ohio)
+- See deploy scripts for bucket names and distribution IDs
 
 ### Lambda Functions (in `lambda/`, deployed separately)
 - **`now-playing/index.mjs`** — Spotify currently-playing API proxy with OAuth token caching. Env vars: `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET`, `SPOTIFY_REFRESH_TOKEN`, `ALLOWED_ORIGINS`
 - **`github-activity/index.mjs`** — GitHub contribution calendar via GraphQL (last 30 days). Env vars: `GITHUB_TOKEN`, `GITHUB_USERNAME`, `ALLOWED_ORIGIN`
-- **API Gateway:** `https://vnx054jquf.execute-api.us-east-2.amazonaws.com/now-playing`
-
-### Analytics
-- Google Tag Manager: `GTM-KM8C7N6Z`
-- Reb2b B2B tracking: key `1N5W0H7D95O5`
+- **API Gateway:** endpoint configured in `index.html` inline script
 
 ## Deployment
 
 ### Dev → Prod Workflow
 ```
 # 1. Deploy local changes to dev for testing
-bash deploy-dev.sh    # syncs to s3://dev.kylekrukar.com, invalidates dev CDN
+bash deploy-dev.sh    # syncs to dev bucket, invalidates dev CDN
 
-# 2. Test at https://dev.kylekrukar.com
+# 2. Test at dev URL
 
 # 3. Promote dev to production
 bash deploy-prod.sh   # syncs dev bucket → prod bucket, invalidates prod CDN
