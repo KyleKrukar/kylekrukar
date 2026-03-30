@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "dev",
+      "runtimeExecutable": "/opt/homebrew/bin/php",
+      "runtimeArgs": ["-S", "localhost:3000", "/Users/kyle/Documents/Projects/kylekrukar/router.php"],
+      "port": 3000
+    }
+  ]
+}
